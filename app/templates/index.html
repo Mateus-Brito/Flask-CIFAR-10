@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dropzone.css') }}"/>
+        <title>CIFAR-10 Browser Test</title>
+        <style>
+            #myAwesomeDropzone{
+                width: 250px;
+                text-align: center;
+                margin-right: 20px;
+            }
+            #arrow{
+                width: 200px;
+            }
+            #result{
+                padding: 15px 25px;
+                border: 1px solid grey;
+                margin-left: 10px;
+            }
+            #submit{
+                background: #902b2b;
+                border: 1px solid #902b2b;
+                border-radius: 3px;
+                margin-top: 10px;
+                padding: 5px 10px;
+                color: white;
+            }
+            body{
+                height: 100vh;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+            }
+            .line{
+                display: inline-block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="line">
+            <form action="/" id="myAwesomeDropzone">
+                <div class="dz-message" data-dz-message><span>Drop here</span></div>
+            </form>
+            <button id="submit">Check</button>
+        </div>
+        <div class="line">
+            <img id="arrow" src="{{ url_for('static', filename='img/arrow.png') }}" alt="arrow" />
+        </div>
+        <div class="line" id="result">
+            <h2>Result</h2>
+            <div>
+                <p>Filename: <b id="result_filename">?</b></p>
+                <p>Result date: <b id="result_date">?</b></p>
+                <p>Class: <b id="result_class">?</b></p>
+            </div>
+        </div>
+        <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js')}}"></script>
+        <script src="{{ url_for('static', filename='js/dropzone.js')}}"></script>
+
+        <script>
+            function getClassName( value ){
+                switch(value){
+                    case 0: return "airplane";
+                    case 1: return "automobile";
+                    case 2: return "bird";
+                    case 3: return "cat";
+                    case 4: return "deer";
+                    case 5: return "dog";
+                    case 6: return "frog";
+                    case 7: return "horse";
+                    case 8: return "ship";
+                    case 9: return "truck";
+                    default: return "Erro!";
+                }
+            }
+            var myDropzone = new Dropzone("form#myAwesomeDropzone", 
+            { 
+                url: "/cifarTest",
+                maxFiles: 1,
+                autoProcessQueue: false,
+                maxfilesexceeded: function(file) {
+                    this.removeAllFiles();
+                    this.addFile(file);
+                },
+                accept: function(file, done) {
+                    console.log("uploaded");
+                    done();
+                },
+                success: function(file, response) {
+                    if(response){
+                        $("#result_filename").text( response.filename );
+                        $("#result_date").text( response.date );
+                        $("#result_class").text( getClassName(response.classname) );
+                    }
+                },
+            });
+
+
+            $(document).ready(function(){
+                $("#submit").click(function (e) {
+                    e.preventDefault();
+                    myDropzone.processQueue();
+                });
+            });
+        </script>
+    </body>
+</html>
