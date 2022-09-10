@@ -8,7 +8,7 @@ you can read more about by [clicking here](https://www.cs.toronto.edu/~kriz/cifa
 I followed [this tutorial](https://machinelearningmastery.com/how-to-develop-a-cnn-from-scratch-for-cifar-10-photo-classification/
 ) to learn how to create the model
 
-#Results
+## Results
 
 ![Screenshot_2019-12-13 CIFAR-10 Browser Test](https://user-images.githubusercontent.com/13570164/70841541-09b35a80-1dfa-11ea-8909-01d57f98b9fa.png)
 

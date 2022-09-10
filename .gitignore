@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Custom upload folder
+app/uploaded/*
+!app/uploaded/images.txt

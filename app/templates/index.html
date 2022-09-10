@@ -76,7 +76,7 @@
             }
             var myDropzone = new Dropzone("form#myAwesomeDropzone", 
             { 
-                url: "/cifarTest",
+                url: "/cifar-test",
                 maxFiles: 1,
                 autoProcessQueue: false,
                 maxfilesexceeded: function(file) {
@@ -84,7 +84,6 @@
                     this.addFile(file);
                 },
                 accept: function(file, done) {
-                    console.log("uploaded");
                     done();
                 },
                 success: function(file, response) {
