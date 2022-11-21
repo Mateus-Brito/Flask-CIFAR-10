@@ -1,5 +1,5 @@
 flask==2.2.2 
 keras==2.10.0
-tensorflow-gpu==2.10.0
+tensorflow-gpu==2.10.1
 pillow==9.2.0
 pre-commit==2.20.0
